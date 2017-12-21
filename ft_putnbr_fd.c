@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/20 17:30:07 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/20 17:44:57 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+static void		ft_putint_fd(long long b, int fd)
 {
-	unsigned char	*src2;
-	int				i;
+	if (b != 0)
+	{
+		if (b < 0)
+		{
+			b = -b;
+			ft_putchar_fd('-', fd);
+		}
+		ft_putint_fd(b / 10, fd);
+		ft_putchar_fd('0' + b % 10, fd);
+	}
+}
 
-	src2 = (unsigned char *)src;
-	i = 0;
-	while ((len > 0) && src2[i])
+void			ft_putnbr_fd(int n, int fd)
+{
+	if (n == 0)
 	{
-		dst[i] = src2[i];
-		len--;
-		i++;
+		ft_putchar_fd('0', fd);
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	ft_putint_fd(n, fd);
 }

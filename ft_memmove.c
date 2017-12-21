@@ -1,31 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/12 13:34:47 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/12 17:21:09 by sprodan-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t i;
-	unsigned char *dst1;
-	unsigned char *src1;
+	size_t	i;
+	char	*dst1;
+	char	*src1;
 
-	dst1 = (unsigned char *)dst;
-	src1 = (unsigned char *)src;
-
-	if (dst1 < src1)
+	dst1 = (char *)dst;
+	src1 = (char *)src;
+	if (src1 > dst1)
 	{
-		i = -1;
-		while (++i < len)
+		i = 0;
+		while (i < len)
 		{
-			*dst1 = *src1;
-			dst1++;
-			src1++;
+			dst1[i] = src1[i];
+			i++;
 		}
 	}
 	else
 	{
-		while (len > 0)
+		len--;
+		while ((int)len >= 0)
 		{
-			*dst1 = *src1;
-			dst1++;
-			src1++;
+			dst1[len] = src1[len];
 			len--;
 		}
 	}

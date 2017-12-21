@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/21 15:19:06 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/21 16:12:05 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	unsigned char	*src2;
-	int				i;
+	t_list	*i;
+	t_list	*new;
+	t_list	*tmp;
 
-	src2 = (unsigned char *)src;
-	i = 0;
-	while ((len > 0) && src2[i])
+	new = (t_list*)malloc(sizeof(t_list));
+	if (!new || !lst)
+		return (NULL);
+	new = f(lst);
+	lst = lst->next;
+	tmp = new;
+	while (lst != NULL)
 	{
-		dst[i] = src2[i];
-		len--;
-		i++;
+		i = lst->next;
+		tmp->next = f(lst);
+		tmp = tmp->next;
+		if (tmp == NULL)
+			return (NULL);
+		lst = i;
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	return (new);
 }

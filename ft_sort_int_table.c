@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_sort_int_table.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/20 17:32:09 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/20 17:52:01 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int		*ft_sort_int_table(int *ar, int size)
 {
-	unsigned char	*src2;
-	int				i;
+	int i;
+	int j;
+	int temp;
 
-	src2 = (unsigned char *)src;
 	i = 0;
-	while ((len > 0) && src2[i])
+	while (i < size)
 	{
-		dst[i] = src2[i];
-		len--;
+		j = i + 1;
+		while (j < size - 1)
+		{
+			if (ar[i] < ar[j])
+			{
+				temp = ar[i];
+				ar[i] = ar[j];
+				ar[j] = temp;
+			}
+			j++;
+		}
 		i++;
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	return (ar);
 }

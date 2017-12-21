@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amanolac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/18 17:19:48 by amanolac          #+#    #+#             */
+/*   Updated: 2017/12/18 17:20:18 by amanolac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void	*ft_memalloc(size_t size)
 {
-	unsigned char	*src2;
-	int				i;
+	void *ptr;
 
-	src2 = (unsigned char *)src;
-	i = 0;
-	while ((len > 0) && src2[i])
+	ptr = (void *)malloc(size);
+	if (ptr == NULL)
 	{
-		dst[i] = src2[i];
-		len--;
-		i++;
+		return (NULL);
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	ft_memset(ptr, 0, size);
+	return (ptr);
 }

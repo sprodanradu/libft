@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_minint.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/20 17:22:19 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/20 17:54:19 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int		ft_minint(int *ar, int size)
 {
-	unsigned char	*src2;
-	int				i;
+	int i;
+	int max;
 
-	src2 = (unsigned char *)src;
 	i = 0;
-	while ((len > 0) && src2[i])
+	min = ar[0];
+	while (i < size)
 	{
-		dst[i] = src2[i];
-		len--;
+		if (ar[i] < max)
+			min = ar[i];
 		i++;
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	return (min);
 }
