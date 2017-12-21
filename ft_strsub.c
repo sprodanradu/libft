@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/15 14:57:25 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/15 15:16:02 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	unsigned char	*src2;
-	int				i;
+	int		i;
+	char	*str;
 
-	src2 = (unsigned char *)src;
+	if (s == NULL)
+		return (NULL);
+	str = (char*)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
 	i = 0;
-	while ((len > 0) && src2[i])
-	{
-		dst[i] = src2[i];
-		len--;
-		i++;
-	}
 	while (len > 0)
 	{
-		dst[i] = '\0';
-		i++;
+		str[i++] = s[start++];
 		len--;
 	}
-	return (dst);
+	str[i] = '\0';
+	return (str);
 }

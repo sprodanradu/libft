@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/12 19:42:42 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/13 12:39:04 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strstr(const char *big, const char *little)
 {
-	unsigned char	*src2;
-	int				i;
+	int	i;
+	int	j;
+	int	k;
 
-	src2 = (unsigned char *)src;
+	if ((int)ft_strlen(little) == 0)
+		return ((char *)big);
 	i = 0;
-	while ((len > 0) && src2[i])
+	while (big[i])
 	{
-		dst[i] = src2[i];
-		len--;
+		if (big[i] == little[0])
+		{
+			j = 0;
+			k = i;
+			while (big[k] == little[j])
+			{
+				k++;
+				j++;
+				if (!little[j])
+					return ((char *)(big + i));
+			}
+		}
 		i++;
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	return (NULL);
 }

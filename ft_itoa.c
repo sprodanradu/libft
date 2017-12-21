@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/19 19:49:06 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/20 18:47:18 by sprodan-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static char	ft_tochar(int n)
+static char			ft_tochar(int n)
 {
 	char c;
 
@@ -8,20 +20,58 @@ static char	ft_tochar(int n)
 	return (c);
 }
 
-static long long ft_modulus(long long n)
+static void			ft_ifnzero(char **str)
 {
-	if (n < 0)
-		n = -1 * n;
-	return (n);
+	char *str2;
+
+	str2 = *str;
+	str2 = (char*)malloc(sizeof(char) * 2);
+	str2[0] = '0';
+	str2[1] = '\0';
+	*str = str2;
 }
 
-char		*ft_itoa(int n)
+static char			*ft_memaloc(char *str, int i, int len, int n)
 {
-	int 		i;
+	long long nb;
+
+	if (n < 0)
+	{
+		str = (char*)malloc(sizeof(char) * (i + 2));
+		if (!str)
+			return (NULL);
+		len = i + 2;
+		str[0] = '-';
+	}
+	else
+	{
+		str = (char*)malloc(sizeof(char) * (i + 1));
+		if (!str)
+			return (NULL);
+		len = (i + 1);
+	}
+	nb = ft_modulus((long long)n);
+	str[--len] = '\0';
+	while (nb > 0)
+	{
+		str[--len] = ft_tochar(nb % 10);
+		nb = nb / 10;
+	}
+	return (str);
+}
+
+char				*ft_itoa(int n)
+{
+	int			i;
 	long long	nb;
 	char		*str;
 	int			len;
 
+	if (n == 0)
+	{
+		ft_ifnzero(&str);
+		return (str);
+	}
 	nb = ft_modulus((long long)n);
 	i = 0;
 	while (nb > 0)
@@ -29,24 +79,8 @@ char		*ft_itoa(int n)
 		nb = nb / 10;
 		i++;
 	}
-	if (n < 0)
-	{
-		str = (char*)malloc(sizeof(char) * (i + 2));
-		len = i + 2;
-		str[0] = '-';
-	}
-	else
-	{
-		str = (char*)malloc(sizeof(char) * (i + 1));
-		len = (i + 1);
-	}
-	nb = ft_modulus((long long)n);
-	str[len--] = '\0';
-	while (nb > 0)
-	{
-		str[len--] = nb % 10;
-		nb = nb / 10;
-	}
-	str = ft_strrev(str);
+	len = 0;
+	str = NULL;
+	str = ft_memaloc(str, i, len, n);
 	return (str);
 }

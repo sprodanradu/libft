@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_minint.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/20 17:22:19 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/20 17:54:19 by sprodan-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_maxint(int *ar, int size)
+int		ft_minint(int *ar, int size)
 {
 	int i;
 	int max;
@@ -10,7 +22,7 @@ int	ft_maxint(int *ar, int size)
 	while (i < size)
 	{
 		if (ar[i] < max)
-			min = ar[i]
+			min = ar[i];
 		i++;
 	}
 	return (min);

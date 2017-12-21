@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 13:31:33 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/12 14:06:38 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/19 20:56:29 by sprodan-          #+#    #+#             */
+/*   Updated: 2017/12/19 21:02:51 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strrev(char *str)
 {
-	unsigned char	*src2;
-	int				i;
+	int		len;
+	char	temp;
+	int		start;
 
-	src2 = (unsigned char *)src;
-	i = 0;
-	while ((len > 0) && src2[i])
+	start = 0;
+	len = ft_strlen(str) - 1;
+	while (start < len)
 	{
-		dst[i] = src2[i];
-		len--;
-		i++;
+		temp = str[start];
+		str[start++] = str[len];
+		str[len--] = temp;
 	}
-	while (len > 0)
-	{
-		dst[i] = '\0';
-		i++;
-		len--;
-	}
-	return (dst);
+	return (str);
 }

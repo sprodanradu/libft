@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_int_table.c                                :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amanolac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/20 17:32:09 by sprodan-          #+#    #+#             */
-/*   Updated: 2017/12/20 17:52:01 by sprodan-         ###   ########.fr       */
+/*   Created: 2017/12/18 17:57:40 by amanolac          #+#    #+#             */
+/*   Updated: 2017/12/19 18:01:56 by amanolac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		*ft_sort_int_table(int *ar, int size)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	int i;
-	int j;
-	int temp;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < size)
+	if (s2[i] == '\0')
+		return ((char *)s1);
+	while (s1[i] && i < n)
 	{
-		j = i + 1;
-		while (j < size - 1)
-		{
-			if (ar[i] < ar[j])
-			{
-				temp = ar[i];
-				ar[i] = ar[j];
-				ar[j] = temp;
-			}
+		j = 0;
+		while (s1[i + j] == s2[j] && (i + j) < n
+			&& s2[j] != '\0')
 			j++;
-		}
+		if (s2[j] == '\0')
+			return ((char *)s1 + i);
 		i++;
 	}
-	return (ar);
+	return (NULL);
 }
