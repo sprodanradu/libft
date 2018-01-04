@@ -73,6 +73,7 @@ void				ft_putnbr_fd(int n, int fd);
 
 char				*ft_strrev(char *str);
 int					ft_minint(int *ar, int size);
+int				ft_maxint(int *ar, int size);
 long long			ft_modulus(long long n);
 int					*ft_sort_int_table(int *ar, int size);
 
