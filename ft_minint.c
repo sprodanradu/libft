@@ -15,13 +15,13 @@
 int		ft_minint(int *ar, int size)
 {
 	int i;
-	int max;
+	int min;
 
 	i = 0;
 	min = ar[0];
 	while (i < size)
 	{
-		if (ar[i] < max)
+		if (ar[i] < min)
 			min = ar[i];
 		i++;
 	}
