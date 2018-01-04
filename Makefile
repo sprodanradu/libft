@@ -65,6 +65,10 @@ SRCS = ft_memset.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
 		ft_modulus.c \
+		ft_strrev.c \
+		ft_minint.c \
+		ft_maxint.c \
+		ft_sort_int_table.c \
 		ft_lstnew.c \
 		ft_lstdelone.c \
 		ft_lstdel.c \
