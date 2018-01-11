@@ -71,13 +71,6 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
-char				*ft_strrev(char *str);
-int					ft_minint(int *ar, int size);
-int					ft_maxint(int *ar, int size);
-long long			ft_modulus(long long n);
-int					*ft_sort_int_table(int *ar, int size);
-int					ft_sqrt(int nr);
-
 typedef struct		s_list
 {
 	void			*content;
@@ -92,4 +85,12 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+char				*ft_strrev(char *str);
+int					ft_minint(int *ar, int size);
+int					ft_maxint(int *ar, int size);
+long long			ft_modulus(long long n);
+int					*ft_sort_int_table(int *ar, int size);
+int					ft_sqrt(int nr);
+
 #endif
